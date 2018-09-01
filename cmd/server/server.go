@@ -10,7 +10,7 @@ import (
 func main() {
 	router := httprouter.New()
 
-	router.GET("/products", service.GetProducts)
+	router.GET("/products/:product_id", service.GetProducts)
 
 	http.ListenAndServe(":9000", router)
 }
