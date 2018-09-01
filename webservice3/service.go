@@ -50,6 +50,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 			return
 		}
 
+		w.Header().Add("Content-Type", "application/json")
 		w.Write(respByte)
 		return
 	}
@@ -57,7 +58,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	prdID, err := strconv.ParseInt(param, 10, 64)
 	if err != nil {
 		log.Println(err)
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -70,6 +71,7 @@ func GetProducts(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 				return
 			}
 
+			w.Header().Set("Content-Type", "application/json")
 			w.Write(respByte)
 			return
 		}
